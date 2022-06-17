@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET [80] (msg:"Short Description"; flow:established,to_server; content:"POST"; http_method; content:"User-Agent: Mozilla/5.0 (Windows NT 33.0|3B| Win64|3B| x64)"; http_raw_header; content:"|0D0A|Accept-Language: fr-FR|0D0A|"; http_raw_header; pcre:"/^\/[A-Za-z0-9]{4,}$/I"; sid:0000001; rev:001;)
