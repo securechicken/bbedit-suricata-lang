@@ -508,20 +508,15 @@
 		<key>Function Pattern</key>
 		<string><![CDATA[
 		(?x:
-			(?:^\s*)(?# leadspaces)
+			^\s*(?# leadspaces)
 			(?P<function>
 				(?:alert|pass|drop|reject|rejectsrc|rejectdst|rejectboth)(?# action)
-				(?:\s+)(?# space)
-				(?:[a-z0-9]{2,8})(?# protocol)
-				(?:[$\w:\/!\[\],\s.]+)(?# source)
-				(?:[<>-]{2})(?# direction)
-				(?:[$\w:\/!\[\],\s.]+)(?# destination)
-				(?:\()(?# rule content opening)
-				(?:.*?)(?# rule content part)
-				(?:msg:\s*"(?P<function_name>[^"]+?)"\s*;)(?# msg is function name)
-				(?:.+)(?# rule content part)
-				(?:;\s*\))(?# rule content closure)
+				.+(?# rule content part)
+				msg\:\s?"(?P<function_name>[^"]+?)"\s?(?# msg is function name)
+				.+(?# rule content part)
+				;\s?\)(?# rule content closure)
 			)
+			\s*$(?# trailspaces)
 		)
 		]]>
 		</string>
